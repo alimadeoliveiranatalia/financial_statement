@@ -3,7 +3,7 @@
 </div>
 <h1>Financial Statement</h1>
 <br>
-<h4>É uma API Rest que:</h4>
+<h4>É uma API Rest de gestão financeira que:</h4>
 <ul>
     <li>Cadastra Usuários.</li>
     <li>Registra operações de Depósito e Saque de um Usuário cadastrado.</li>
@@ -17,4 +17,5 @@
     <li>Express</li>
     <li>Jest</li>
     <li>TypeORM</li>
+    <li>PostgreSQL</li>
 </ul>
