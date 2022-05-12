@@ -3,15 +3,18 @@ import { InMemoryUsersRepository } from "../../../users/repositories/in-memory/I
 import { InMemoryStatementsRepository } from "../../repositories/in-memory/InMemoryStatementsRepository";
 import { GetStatementOperationUseCase } from "./GetStatementOperationUseCase";
 import { GetStatementOperationError } from "./GetStatementOperationError";
+import { CreateUserUseCase } from "../../../users/useCases/createUser/CreateUserUseCase";
 
 let inMemoryUsersRepository: InMemoryUsersRepository;
 let inMemoryStatementRepository: InMemoryStatementsRepository;
+let createUserCase: CreateUserUseCase;
 let getStatementOperationUseCase: GetStatementOperationUseCase;
 
 describe("Get Statement Operation User", () => {
     beforeEach(async () => {
         inMemoryUsersRepository = new InMemoryUsersRepository();
         inMemoryStatementRepository = new InMemoryStatementsRepository();
+        createUserCase = new CreateUserUseCase(inMemoryUsersRepository);
         getStatementOperationUseCase = new GetStatementOperationUseCase(
             inMemoryUsersRepository,
             inMemoryStatementRepository
@@ -51,14 +54,13 @@ describe("Get Statement Operation User", () => {
     });
     it("Should not be able to list statement nonexistent operation", () => {
         expect(async() => {
-            const statement = await inMemoryStatementRepository.create({
-                user_id:"lkih123",
-                type:OperationType.DEPOSIT,
-                amount:30,
-                description:"deposit"
+            const user = await createUserCase.execute({
+                name:"Noah",
+                email:"noah@email.com",
+                password:"noahpass"
             });
             await getStatementOperationUseCase.execute({
-                user_id: statement.user_id,
+                user_id: user.id as string,
                 statement_id:"kshdlandlkjk"
             });
         }).rejects.toBeInstanceOf(GetStatementOperationError.StatementNotFound);
