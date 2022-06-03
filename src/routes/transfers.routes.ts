@@ -4,10 +4,10 @@ import { ensureAuthenticated } from "../shared/infra/http/middlwares/ensureAuthe
 
 const transferRoutes = Router();
 
-transferRoutes.use(ensureAuthenticated);
-
 const createTransferController = new CreateTransferController();
 
-transferRoutes.post('/', ensureAuthenticated, createTransferController.handle);
+transferRoutes.use(ensureAuthenticated);
+
+transferRoutes.post('/:received_id', createTransferController.handle);
 
 export { transferRoutes };

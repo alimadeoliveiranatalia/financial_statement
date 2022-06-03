@@ -6,7 +6,7 @@ export enum TransferOperation {
     TRANSFER = 'transfer'
 }
 
-@Entity("transfer")
+@Entity("transfers")
 class Transfer {
     @PrimaryGeneratedColumn('uuid')
     id?:string;

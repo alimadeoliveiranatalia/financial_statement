@@ -13,6 +13,8 @@
 <h4>Principais Tecnologias Utilizadas:</h4>
 <ul>
     <li>Node.JS</li>
+    <li>SOLID</li>
+    <li>Testes de Unidades</li>
     <li>JWT (JSON WEB TOKEN)</li>
     <li>Express</li>
     <li>Jest</li>
