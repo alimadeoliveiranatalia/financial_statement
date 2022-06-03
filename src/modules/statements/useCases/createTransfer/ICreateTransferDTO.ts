@@ -1,9 +1,8 @@
-import { Transfer } from "../../entities/Transfer";
-
-export type ICreateTransferDTO = 
-Pick<
-    Transfer,
-    'sender_id' |
-    'description' |
-    'amount' 
-> 
+interface ICreateTransferDTO  
+{
+    received_id ?:string;
+    sender_id:string;
+    amount: number;
+    description: string; 
+}
+export { ICreateTransferDTO }

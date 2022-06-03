@@ -10,13 +10,14 @@ class TransfersRepository implements ITransfersRepository {
         this.repository = getRepository(Transfer);
     }
     
-    async create({sender_id, amount, description }: ICreateTransferDTO) : Promise<Transfer>{
-        const transfer = this.repository.create({
-            sender_id,
-            amount,
-            description
-        });
-        return this.repository.save(transfer);
+    async create({ sender_id, amount, description }: ICreateTransferDTO) : Promise<Transfer> {
+       const transfer = this.repository.create({
+           sender_id,
+           amount,
+           description
+       });
+       this.repository.save(transfer);
+       return transfer;
     }
     /*async findTransferById(id: string): Promise<Transfer> {
         return this.repository.findOne(id);

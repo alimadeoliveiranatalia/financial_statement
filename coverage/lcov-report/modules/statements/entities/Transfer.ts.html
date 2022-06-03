@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for modules/statements/entities/Statement.ts</title>
+    <title>Code coverage report for modules/statements/entities/Transfer.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">modules/statements/entities</a> Statement.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">modules/statements/entities</a> Transfer.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>50/50</span>
+                <span class='fraction'>45/45</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>50/50</span>
+                <span class='fraction'>45/45</span>
             </div>
         
             
@@ -107,13 +107,7 @@
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L45'></a><a href='#L45'>45</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -157,63 +151,51 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn
-} from 'typeorm';
-import { v4 as uuid } from 'uuid';
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { v4 as uuid } from "uuid";
+import { User } from "../../users/entities/User";
 &nbsp;
-import { User } from '../../users/entities/User';
-&nbsp;
-export enum OperationType {
-  DEPOSIT = 'deposit',
-  WITHDRAW = 'withdraw',
+export enum TransferOperation {
+    TRANSFER = 'transfer'
 }
 &nbsp;
-@Entity('statements')
-export class Statement {
-  @PrimaryGeneratedColumn('uuid')
-  id?: string;
+@Entity("transfers")
+class Transfer {
+    @PrimaryGeneratedColumn('uuid')
+    id?:string;
 &nbsp;
-  @Column('uuid')
-  user_id: string;
+    @Column('uuid')
+    sender_id: string;
 &nbsp;
-  @ManyToOne(<span class="fstat-no" title="function not covered" >() =&gt; User,</span> user =&gt; user.statement)
-  @JoinColumn({ name: 'user_id' })
-  user: User;
+    @ManyToOne(<span class="fstat-no" title="function not covered" >() =&gt; User,</span> user =&gt; user.transfer)
+    @JoinColumn({ name: 'sender_id'})
+    user: User;
 &nbsp;
-  @Column()
-  description: string;
+    @Column('decimal', { precision: 5, scale: 2})
+    amount: number;
 &nbsp;
-  @Column('decimal', { precision: 5, scale: 2 })
-  amount: number;
+    @Column()
+    description: string;
 &nbsp;
-  @Column({ type: 'enum', enum: OperationType })
-  type: OperationType;
+    @Column({ type: 'enum', enum: TransferOperation })
+    type: TransferOperation;
 &nbsp;
-  @CreateDateColumn()
-  created_at: Date;
+    @CreateDateColumn()
+    created_at: Date;
 &nbsp;
-  @CreateDateColumn()
-  updated_at: Date;
+    @CreateDateColumn()
+    updated_at: Date;
 &nbsp;
-  constructor() {
-    if (!this.id) {
-      this.id = uuid();
+    constructor(){
+        if(!this.id){
+            this.id = uuid();
+        }
+        if(!this.type){
+            this.type = TransferOperation.TRANSFER;
+        }
     }
-  }
 }
-&nbsp;</pre></td></tr></table></pre>
+export { Transfer }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

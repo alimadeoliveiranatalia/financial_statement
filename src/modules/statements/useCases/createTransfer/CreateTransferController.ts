@@ -11,6 +11,7 @@ class CreateTransferController {
         const createTransferUseCase = container.resolve(CreateTransferUseCase);
 
         const transfer = await createTransferUseCase.execute({
+            received_id,
             sender_id,
             amount,
             description

@@ -15,10 +15,11 @@ class CreateTransferUseCase {
         @inject('TransfersRepository')
         private transfersRepository: ITransfersRepository
     ){ }
-    async execute({ sender_id, amount, description }:ICreateTransferDTO){
-        const user = await this.usersRepository.findById(sender_id);
+    async execute({ received_id, sender_id, amount, description }:ICreateTransferDTO){
 
-        if(!user){
+        const received_user = await this.usersRepository.findById(received_id as string );
+
+        if(!received_user){
             throw new CreateTransferError.UserNotFound();
         }
         const { balance } = await this.statementsRepository.getUserBalance({ user_id: sender_id });
