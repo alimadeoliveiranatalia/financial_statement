@@ -1,4 +1,5 @@
 import { InMemoryUsersRepository } from "../../../users/repositories/in-memory/InMemoryUsersRepository";
+import { OperationType } from "../../entities/Statement";
 import { InMemoryStatementsRepository } from "../../repositories/in-memory/InMemoryStatementsRepository";
 import { GetBalanceError } from "./GetBalanceError";
 import { GetBalanceUseCase } from "./GetBalanceUseCase";
@@ -21,8 +22,21 @@ describe("Get Balance User", () => {
             email:"david2email.com",
             password:'D@vi*3289'
         });
+        await inMemoryStatementsRepository.create({
+            user_id: user.id as string,
+            type: OperationType.DEPOSIT,
+            amount: 100,
+            description:"Pagamento PIX"
+        });
+        await inMemoryStatementsRepository.create({
+            user_id: user.id as string,
+            type: OperationType.WITHDRAW,
+            amount: 40,
+            description: "Remédio de Julhinha"
+        });
         const user_balance = await getUserBalanceUseCase.execute({
             user_id: user.id as string });
+            
         expect(user_balance).toHaveProperty("statement");
     });
     it("Should not be able to get nonexistent user balance",() => {
