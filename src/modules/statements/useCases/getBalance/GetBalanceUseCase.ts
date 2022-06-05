@@ -2,7 +2,9 @@ import { inject, injectable } from "tsyringe";
 
 import { IUsersRepository } from "../../../users/repositories/IUsersRepository";
 import { Statement } from "../../entities/Statement";
+import { Transfer } from "../../entities/Transfer";
 import { IStatementsRepository } from "../../repositories/IStatementsRepository";
+import { ITransfersRepository } from "../../repositories/ITransfersRepository";
 import { GetBalanceError } from "./GetBalanceError";
 
 interface IRequest {
@@ -11,6 +13,7 @@ interface IRequest {
 
 interface IResponse {
   statement: Statement[];
+  transfer: Transfer[];
   balance: number;
 }
 
@@ -19,6 +22,9 @@ export class GetBalanceUseCase {
   constructor(
     @inject('StatementsRepository')
     private statementsRepository: IStatementsRepository,
+
+    @inject('TransferRepository')
+    private transfersRepository: ITransfersRepository,
 
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
