@@ -25,6 +25,9 @@ export class GetBalanceUseCase {
     
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
+
+    @inject('TransfersRepository')
+    private transfersRepository: ITransfersRepository,
   ) {}
 
   async execute({ user_id }: IRequest): Promise<IResponse> {
@@ -35,10 +38,17 @@ export class GetBalanceUseCase {
       throw new GetBalanceError();
     }
 
-    const balance = await this.statementsRepository.getUserBalance({
+    const balance_statement = await this.statementsRepository.getUserBalance({
       user_id,
       with_statement: true
     });
+
+    const balance_transfer = await this.transfersRepository.getTransfersBalance({
+      user_id,
+      with_statement: true
+    });
+
+    const balance = {balance_statement,balance_transfer,balance_statement.balance - balance_transfer.balance};
 
     return balance as IResponse;
   }

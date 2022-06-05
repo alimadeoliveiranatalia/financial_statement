@@ -17,10 +17,13 @@ export class InMemoryTransfersRepository implements ITransfersRepository {
     }
     async getTransfersBalance({user_id, with_statement = false}: IGetBalanceDTO): Promise<{ balance: number; } | { balance: number; transfer: Transfer[]; }> {
         const transfer = this.transfers.filter((operation) => operation.sender_id === user_id);
+        
         const transfer_balance = transfer.reduce((acc, operation) => {
             return acc + operation.amount;
         }, 0 );
+        
         const balance = transfer_balance;
+        
         if(with_statement){
             return {
                 transfer,
