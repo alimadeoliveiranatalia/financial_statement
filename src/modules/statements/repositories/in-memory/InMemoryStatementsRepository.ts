@@ -7,7 +7,6 @@ import { IStatementsRepository } from "../IStatementsRepository";
 
 export class InMemoryStatementsRepository implements IStatementsRepository {
   private statements: Statement[] = [];
-  private transfers: Transfer[] = [];
 
   async create(data: ICreateStatementDTO): Promise<Statement> {
     const statement = new Statement();
@@ -32,15 +31,7 @@ export class InMemoryStatementsRepository implements IStatementsRepository {
     >
   {
     const statement = this.statements.filter(operation => operation.user_id === user_id);
-
-    const transfer = this.transfers.filter(user => user.sender_id === user_id);
-
-    const transfers_balance = transfer.reduce((acc, operation) => {
-      if(operation.type === 'transfer'){
-        return acc + operation.amount;
-      }
-    }, 0);
-
+    
     const statement_balance = statement.reduce((acc, operation) => {
       if (operation.type === 'deposit') {
         return acc + operation.amount;
@@ -49,12 +40,13 @@ export class InMemoryStatementsRepository implements IStatementsRepository {
       }
     }, 0);
 
-    const balance = statement_balance - transfers_balance;
+    
+
+    const balance = statement_balance ;
 
     if (with_statement) {
       return {
         statement,
-        transfer,
         balance
       }
     }

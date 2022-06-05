@@ -22,7 +22,7 @@ export class GetBalanceUseCase {
   constructor(
     @inject('StatementsRepository')
     private statementsRepository: IStatementsRepository,
-
+    
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
   ) {}

@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>7/8</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
@@ -154,38 +154,38 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Statement } from "../../entities/Statement";
 import { Transfer } from "../../entities/Transfer";
@@ -215,25 +215,25 @@ export class InMemoryStatementsRepository implements IStatementsRepository {
 <span class="cstat-no" title="statement not covered" >    ));</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
-  async getUserBalance({ user_id, with_statement<span class="branch-0 cbranch-no" title="branch not covered" > = false </span>}: IGetBalanceDTO):
+  async getUserBalance({ user_id, with_statement = false }: IGetBalanceDTO):
     Promise&lt;
       { balance: number } | { balance: number, statement: Statement[], transfer: Transfer[] }
     &gt;
   {
     const statement = this.statements.filter(operation =&gt; operation.user_id === user_id);
-&nbsp;
-    const transfer = this.transfers.filter(user =&gt; user.sender_id === user_id);
-&nbsp;
-    const transfers_balance = transfer.reduce((acc, operation) =&gt; {
-<span class="cstat-no" title="statement not covered" >      return acc + operation.amount;</span>
-    }, 0);
-&nbsp;
+    
     const statement_balance = statement.reduce((acc, operation) =&gt; {
       if (operation.type === 'deposit') {
         return acc + operation.amount;
       } else {
         return acc - operation.amount;
       }
+    }, 0);
+&nbsp;
+    const transfer = this.transfers.filter(operation =&gt; operation.sender_id === user_id);
+&nbsp;
+    const transfers_balance = transfer.reduce((acc, operation) =&gt; {
+<span class="cstat-no" title="statement not covered" >      return acc + operation.amount;</span>
     }, 0);
 &nbsp;
     const balance = statement_balance - transfers_balance;
@@ -256,7 +256,7 @@ export class InMemoryStatementsRepository implements IStatementsRepository {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sat Jun 04 2022 21:50:52 GMT-0300 (Horário Padrão de Brasília)
+                at Sun Jun 05 2022 00:40:01 GMT-0300 (Horário Padrão de Brasília)
             </div>
         <script src="../../../../prettify.js"></script>
         <script>
