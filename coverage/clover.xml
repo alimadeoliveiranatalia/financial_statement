@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1654387243317" clover="3.2.0">
-  <project timestamp="1654387243317" name="All files">
-    <metrics statements="305" coveredstatements="297" conditionals="34" coveredconditionals="32" methods="19" coveredmethods="15" elements="358" coveredelements="344" complexity="0" loc="305" ncloc="305" packages="6" files="9" classes="9"/>
+<coverage generated="1654390252151" clover="3.2.0">
+  <project timestamp="1654390252152" name="All files">
+    <metrics statements="303" coveredstatements="295" conditionals="34" coveredconditionals="32" methods="19" coveredmethods="15" elements="356" coveredelements="342" complexity="0" loc="303" ncloc="303" packages="6" files="9" classes="9"/>
     <package name="modules.statements.entities">
       <metrics statements="95" coveredstatements="95" conditionals="6" coveredconditionals="6" methods="4" coveredmethods="2"/>
       <file name="Statement.ts" path="/home/natalia/desafio_nodejs/financial_statement/src/modules/statements/entities/Statement.ts">
@@ -195,7 +195,7 @@
       </file>
     </package>
     <package name="modules.statements.useCases.getBalance">
-      <metrics statements="54" coveredstatements="54" conditionals="7" coveredconditionals="7" methods="3" coveredmethods="3"/>
+      <metrics statements="52" coveredstatements="52" conditionals="7" coveredconditionals="7" methods="3" coveredmethods="3"/>
       <file name="GetBalanceError.ts" path="/home/natalia/desafio_nodejs/financial_statement/src/modules/statements/useCases/getBalance/GetBalanceError.ts">
         <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
@@ -207,7 +207,7 @@
         <line num="7" count="1" type="stmt"/>
       </file>
       <file name="GetBalanceUseCase.ts" path="/home/natalia/desafio_nodejs/financial_statement/src/modules/statements/useCases/getBalance/GetBalanceUseCase.ts">
-        <metrics statements="47" coveredstatements="47" conditionals="5" coveredconditionals="5" methods="2" coveredmethods="2"/>
+        <metrics statements="45" coveredstatements="45" conditionals="5" coveredconditionals="5" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -236,25 +236,23 @@
         <line num="26" count="2" type="stmt"/>
         <line num="27" count="2" type="stmt"/>
         <line num="28" count="2" type="stmt"/>
-        <line num="29" count="2" type="stmt"/>
-        <line num="30" count="2" type="stmt"/>
-        <line num="31" count="2" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="33" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="30" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="31" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
         <line num="34" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="35" count="2" type="stmt"/>
-        <line num="36" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
         <line num="39" count="1" type="stmt"/>
         <line num="40" count="1" type="stmt"/>
         <line num="41" count="1" type="stmt"/>
-        <line num="42" count="1" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
+        <line num="42" count="2" type="stmt"/>
+        <line num="43" count="2" type="stmt"/>
         <line num="44" count="2" type="stmt"/>
-        <line num="45" count="2" type="stmt"/>
-        <line num="46" count="2" type="stmt"/>
-        <line num="47" count="1" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
       </file>
     </package>
     <package name="modules.users.entities">
