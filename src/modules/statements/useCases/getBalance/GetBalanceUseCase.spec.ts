@@ -53,7 +53,7 @@ describe("Get Balance User", () => {
         const user_balance = await getUserBalanceUseCase.execute({
             user_id: user.id as string });
         console.log(user_balance);
-        console.log(transfer);    
+        //console.log(transfer);    
         expect(user_balance).toHaveProperty("statement");
     });
     it("Should not be able to get nonexistent user balance",() => {
