@@ -17,7 +17,9 @@ describe("Get Balance User", () => {
         inMemoryTransfersRepository = new InMemoryTransfersRepository(),
         getUserBalanceUseCase = new GetBalanceUseCase(
             inMemoryStatementsRepository,
-            inMemoryUsersRepository);
+            inMemoryUsersRepository,
+            inMemoryTransfersRepository
+        );
     });
     it("Should be able to get user balance", async () => {
         const user = await inMemoryUsersRepository.create({

@@ -12,8 +12,8 @@ interface IRequest {
 }
 
 interface IResponse {
-  statement: Statement[];
-  transfer: Transfer[];
+  statement:Statement[];
+  transfer:Transfer[];
   balance: number;
 }
 
@@ -38,18 +38,20 @@ export class GetBalanceUseCase {
       throw new GetBalanceError();
     }
 
-    const balance_statement = await this.statementsRepository.getUserBalance({
+    const statement = await this.statementsRepository.getUserBalance({
       user_id,
       with_statement: true
     });
 
-    const balance_transfer = await this.transfersRepository.getTransfersBalance({
+    const transfer = await this.transfersRepository.getTransfersBalance({
       user_id,
       with_statement: true
     });
 
-    const balance = {balance_statement,balance_transfer,balance_statement.balance - balance_transfer.balance};
-
-    return balance as IResponse;
+    const total = statement.balance - transfer.balance;
+    
+    const balance = { statement, transfer, total };
+    
+    return balance as unknown as IResponse;
   }
 }

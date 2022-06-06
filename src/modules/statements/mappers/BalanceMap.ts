@@ -2,7 +2,10 @@ import { Statement } from "../entities/Statement";
 import { Transfer } from "../entities/Transfer";
 
 export class BalanceMap {
-  static toDTO({statement, transfer, balance}: { statement: Statement[], transfer: Transfer[], balance: number}) {
+  static toDTO({
+    statement,
+    transfer,
+    balance}: { statement: Statement[], transfer: Transfer[], balance: number}) {
     const parsedStatement = statement.map(({
       id,
       amount,
@@ -37,7 +40,7 @@ export class BalanceMap {
         updated_at
       }
     ));
-
+    
     return {
       statement: parsedStatement,
       transfer: parsedTransfer,
