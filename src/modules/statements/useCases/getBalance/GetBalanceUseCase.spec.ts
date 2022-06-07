@@ -44,7 +44,7 @@ describe("Get Balance User", () => {
             amount: 40,
             description: "Remédio de Julhinha"
         });
-        const transfer = await inMemoryTransfersRepository.create({
+        await inMemoryTransfersRepository.create({
             received_id: received_user.id as string,
             sender_id: user.id as string,
             amount: 20,
@@ -53,6 +53,8 @@ describe("Get Balance User", () => {
         const user_balance = await getUserBalanceUseCase.execute({
             user_id: user.id as string });
         console.log(user_balance);
+        console.log(user_balance.statement);
+        console.log(user_balance.transfer);
         expect(user_balance).toHaveProperty("statement");
         expect(user_balance).toHaveProperty("transfer");
     });
