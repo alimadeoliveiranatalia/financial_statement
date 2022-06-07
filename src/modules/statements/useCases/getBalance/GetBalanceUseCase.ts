@@ -51,7 +51,7 @@ export class GetBalanceUseCase {
     const total = statement.balance - transfer.balance;
     
     const balance =   { statement, transfer, total };
-    
+
     return balance as unknown as IResponse;
   }
 }
